@@ -8,7 +8,9 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -18,11 +20,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn -B verify --file pom.xml
-      - name: Jacoco Report
-        run: mvn jacoco:report
-      - name: Upload Jacoco Coverage Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
+        run: mvn verify
