@@ -9,7 +9,7 @@ public class Sorter {
 
   public Sorter(List<SortActions> actions) throws IllegalArgumentException {
     if (actions == null) {
-      throw new IllegalArgumentException("null не метоод сортировки.");
+      throw new IllegalArgumentException("null не метод сортировки.");
     }
     this.actions = actions;
   }
