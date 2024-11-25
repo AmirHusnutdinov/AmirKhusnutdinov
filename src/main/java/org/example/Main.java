@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     Scanner input = new Scanner(System.in);
     Sorter sorter = new Sorter(
         List.of(
@@ -22,12 +22,12 @@ public class Main {
     for (int i = 0; i < len; i++) {
       array.add(input.nextInt());
     }
-    System.out.println("Выбирите тип сортировки");
+    System.out.println("В данный момент доступны следующие типы сортировок:");
     for (SortType element : SortType.values()) {
       System.out.print(element + " ");
     }
 
-    System.out.print("\nВведите её название: ");
+    System.out.print("\nВыберите необходимую и введите её: ");
     SortType type = SortType.valueOf(input.next());
 
     List<Integer> sortedList = sorter.sort(array, type);

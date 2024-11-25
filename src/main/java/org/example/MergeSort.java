@@ -8,7 +8,6 @@ public class MergeSort implements SortActions {
   final private int MAX_SIZE;
 
   public MergeSort(int size) {
-
     this.MAX_SIZE = size;
   }
 

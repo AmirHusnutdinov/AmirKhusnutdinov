@@ -9,12 +9,12 @@ public class Sorter {
 
   public Sorter(List<SortActions> actions) throws IllegalArgumentException {
     if (actions == null) {
-      throw new IllegalArgumentException("null не может быть методом сортировки");
+      throw new IllegalArgumentException("null не может быть методом сортировки.");
     }
     this.actions = actions;
   }
 
-  public List<Integer> sort(List<Integer> oldList, SortType type) {
+  public List<Integer> sort(List<Integer> oldList, SortType type) throws Exception {
     List<Integer> list = new ArrayList<>(oldList);
     for (SortActions action : actions) {
       if (action.type().equals(type)) {
