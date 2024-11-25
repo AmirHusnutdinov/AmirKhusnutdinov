@@ -23,8 +23,8 @@ class MergeSortTest {
   @Test
   void testSortWithEmptyList() {
     MergeSort mergeSort = new MergeSort(5);
-    List<Integer> input = List.of();
-    List<Integer> expected = List.of();
+    List<Integer> input = Arrays.asList();
+    List<Integer> expected = Arrays.asList();
 
     mergeSort.sort(input);
 
