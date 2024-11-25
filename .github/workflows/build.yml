@@ -1,16 +1,20 @@
 name: Java CI with Maven
-
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Show Date
+        run: |
+          current_date_time=$(date)
+          echo "Current date and time: $current_date_time"
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -18,5 +22,5 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn package
-        
+        run:
+          mvn verify
