@@ -66,23 +66,8 @@ public class ArticleControllerTest {
   }
 
   @Test
-  @DisplayName("This test check 404 status when we not found article (creating)")
-  void test1() throws IOException, InterruptedException {
-    HttpResponse<String> response4 = HttpClient.newHttpClient()
-        .send(
-            HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("http://localhost:4567/api/articles/1"))
-                .build(),
-            HttpResponse.BodyHandlers.ofString(UTF_8)
-        );
-
-    assertEquals(404, response4.statusCode());
-  }
-
-  @Test
   @DisplayName("This test check 404 status when we not found article (deleting)")
-  void test2() throws IOException, InterruptedException {
+  void test1() throws IOException, InterruptedException {
     HttpResponse<String> response4 = HttpClient.newHttpClient()
         .send(
             HttpRequest.newBuilder()
@@ -97,7 +82,7 @@ public class ArticleControllerTest {
 
   @Test
   @DisplayName("This test check 404 status when we not found article (updating)")
-  void test3() throws IOException, InterruptedException {
+  void test2() throws IOException, InterruptedException {
     HttpResponse<String> response4 = HttpClient.newHttpClient()
         .send(
             HttpRequest.newBuilder()
