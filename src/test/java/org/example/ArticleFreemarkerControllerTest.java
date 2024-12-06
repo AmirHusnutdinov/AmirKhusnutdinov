@@ -14,7 +14,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import spark.Service;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -25,6 +27,7 @@ import java.util.List;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class ArticleFreemarkerControllerTest {
+
   private Service service;
 
   @BeforeEach
@@ -35,8 +38,10 @@ public class ArticleFreemarkerControllerTest {
 
     InMemoryArticleRepository inMemoryArticleRepository = new InMemoryArticleRepository();
     InMemoryCommentRepository inMemoryCommentRepository = new InMemoryCommentRepository();
-    ArticleService articleService = new ArticleService(inMemoryArticleRepository, inMemoryCommentRepository);
-    CommentService commentService = new CommentService(inMemoryCommentRepository, inMemoryArticleRepository);
+    ArticleService articleService = new ArticleService(inMemoryArticleRepository,
+        inMemoryCommentRepository);
+    CommentService commentService = new CommentService(inMemoryCommentRepository,
+        inMemoryArticleRepository);
 
     Application application = new Application(
         List.of(
