@@ -25,8 +25,7 @@ public class CommentController implements Controller {
   private final CommentService commentService;
   private final ObjectMapper objectMapper;
 
-  public CommentController(Service service, ArticleService articleService,
-      CommentService commentService, ObjectMapper objectMapper) {
+  public CommentController(Service service, ArticleService articleService, CommentService commentService, ObjectMapper objectMapper) {
     this.service = service;
     this.articleService = articleService;
     this.commentService = commentService;
@@ -52,8 +51,7 @@ public class CommentController implements Controller {
           ArticleId articleId = null;
 
           try {
-            commentId = commentService.create(commentCreateRequest.articleId(),
-                commentCreateRequest.text());
+            commentId = commentService.create(commentCreateRequest.articleId(), commentCreateRequest.text());
           } catch (CommentCreateException e) {
             LOG.warn("Cannot create comment", e);
             response.status(400);

@@ -5,7 +5,6 @@ import org.example.Article.ArticleId;
 import org.example.Comment.CommentId;
 
 public record CommentAppendResponse(ArticleId articleId, CommentId commentId) {
-
   @JsonProperty
   public String getArticleId() {
     return articleId.toString();

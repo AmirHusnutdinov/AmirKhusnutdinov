@@ -21,16 +21,15 @@ public class Main {
 
     InMemoryArticleRepository inMemoryArticleRepository = new InMemoryArticleRepository();
     InMemoryCommentRepository inMemoryCommentRepository = new InMemoryCommentRepository();
-    ArticleService articleService = new ArticleService(inMemoryArticleRepository,
-        inMemoryCommentRepository);
-    CommentService commentService = new CommentService(inMemoryCommentRepository,
-        inMemoryArticleRepository);
+    ArticleService articleService = new ArticleService(inMemoryArticleRepository, inMemoryCommentRepository);
+    CommentService commentService = new CommentService(inMemoryCommentRepository, inMemoryArticleRepository);
 
     Application application = new Application(
         List.of(
             new ArticleController(
                 service,
                 articleService,
+                commentService,
                 objectMapper
             ),
             new CommentController(
@@ -43,6 +42,7 @@ public class Main {
                 service,
                 articleService,
                 commentService,
+                objectMapper,
                 TemplateFactory.freeMarkerEngine()
             )
         )

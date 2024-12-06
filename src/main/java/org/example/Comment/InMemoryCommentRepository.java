@@ -36,8 +36,7 @@ public class InMemoryCommentRepository implements CommentRepository {
   @Override
   public synchronized void create(Comment comment) {
     if (commentsMap.containsKey(comment.getId())) {
-      throw new CommentIdDuplicatedException(
-          "Comment with the given id already exists: " + comment.getId());
+      throw new CommentIdDuplicatedException("Comment with the given id already exists: " + comment.getId());
     }
     commentsMap.put(comment.getId(), comment);
   }

@@ -1,11 +1,24 @@
 package org.example.Article;
 
+import ch.qos.logback.classic.pattern.LineSeparatorConverter;
 import org.example.Comment.Comment;
 
 import java.util.List;
 import java.util.Set;
 
-public record Article(ArticleId id, String title, Set<String> tags, List<Comment> comments) {
+public class Article {
+
+  private final ArticleId id;
+  private final String title;
+  private final Set<String> tags;
+  private final List<Comment> comments;
+
+  public Article(ArticleId id, String title, Set<String> tags, List<Comment> comments) {
+    this.id = id;
+    this.title = title;
+    this.tags = tags;
+    this.comments = comments;
+  }
 
   public Article withTitle(String title) {
     return new Article(id, title, tags, comments);
@@ -17,6 +30,22 @@ public record Article(ArticleId id, String title, Set<String> tags, List<Comment
 
   public Article withComments(List<Comment> comments) {
     return new Article(id, title, tags, comments);
+  }
+
+  public ArticleId getId() {
+    return id;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public Set<String> getTags() {
+    return tags;
   }
 
   @Override
@@ -38,9 +67,10 @@ public record Article(ArticleId id, String title, Set<String> tags, List<Comment
 
   @Override
   public String toString() {
-    return "ID = " + id.toString() + ", " +
+    String sb = "ID = " + id.toString() + ", " +
         "Title = " + title + ", " +
         "Tags = " + tags + ", " +
         "Comments = " + comments;
+    return sb;
   }
 }

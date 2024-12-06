@@ -64,7 +64,7 @@ public class ArticleService {
   public void delete(ArticleId id) throws ArticleDeleteException {
     try {
       Article article = articleRepository.findById(id);
-      List<Comment> comments = article.comments();
+      List<Comment> comments = article.getComments();
       articleRepository.delete(id);
       if (comments != null) {
         for (Comment comment : comments) {
@@ -76,7 +76,8 @@ public class ArticleService {
     }
   }
 
-  public void deleteComment(ArticleId articleId, CommentId commentId) throws ArticleFindException, CommentFindException {
+  public void deleteComment(ArticleId articleId, CommentId commentId)
+      throws ArticleFindException, CommentFindException {
     Article article;
     Comment comment;
 
@@ -92,7 +93,7 @@ public class ArticleService {
       throw new CommentFindException("Cannot find comment with id=" + commentId);
     }
 
-    List<Comment> currentComments = article.comments();
+    List<Comment> currentComments = article.getComments();
     currentComments.remove(comment);
     commentRepository.delete(commentId);
     article = article.withComments(currentComments);

@@ -5,6 +5,7 @@ import org.example.*;
 import org.example.Article.Request.ArticleCreateRequest;
 import org.example.Article.Request.ArticleUpdateRequest;
 import org.example.Article.Response.*;
+import org.example.Comment.CommentService;
 import org.example.Article.Exceptions.ArticleCreateException;
 import org.example.Article.Exceptions.ArticleFindException;
 import org.slf4j.Logger;
@@ -23,11 +24,14 @@ public class ArticleController implements Controller {
 
   private final Service service;
   private final ArticleService articleService;
+  private final CommentService commentService;
   private final ObjectMapper objectMapper;
 
-  public ArticleController(Service service, ArticleService articleService, ObjectMapper objectMapper) {
+  public ArticleController(Service service, ArticleService articleService,
+      CommentService commentService, ObjectMapper objectMapper) {
     this.service = service;
     this.articleService = articleService;
+    this.commentService = commentService;
     this.objectMapper = objectMapper;
   }
 
@@ -83,9 +87,9 @@ public class ArticleController implements Controller {
           response.status(200);
           return objectMapper.writeValueAsString(new ArticleFindResponse(
               articleId.toString(),
-              article.title(),
-              article.tags(),
-              article.comments()
+              article.getTitle(),
+              article.getTags(),
+              article.getComments()
           ));
         }
     );
@@ -93,17 +97,17 @@ public class ArticleController implements Controller {
 
   private void getAllArticles() {
     service.get(
-        "/api/articles",
+        "/api/all-articles",
         (Request request, Response response) -> {
           response.type("application/json");
           List<Article> articles = articleService.findAll();
           Map<String, ArticleAllFindResponse> articlesMap = new HashMap<>();
 
           for (Article article : articles) {
-            articlesMap.put(article.id().toString(), new ArticleAllFindResponse(
-                article.title(),
-                article.tags(),
-                article.comments()
+            articlesMap.put(article.getId().toString(), new ArticleAllFindResponse(
+                article.getTitle(),
+                article.getTags(),
+                article.getComments()
             ));
           }
 
@@ -116,7 +120,7 @@ public class ArticleController implements Controller {
 
   private void deleteArticle() {
     service.delete(
-        "/api/article/:articleId",
+        "/api/delete-article/:articleId",
         (Request request, Response response) -> {
           response.type("application/json");
           ArticleId articleId = new ArticleId(Long.parseLong(request.params("articleId")));
@@ -140,11 +144,12 @@ public class ArticleController implements Controller {
 
   private void updateArticle() {
     service.put(
-        "api/article/:articleId",
+        "api/update-article/:articleId",
         (Request request, Response response) -> {
           response.type("application/json");
           String body = request.body();
-          ArticleUpdateRequest articleUpdateRequest = objectMapper.readValue(body, ArticleUpdateRequest.class);
+          ArticleUpdateRequest articleUpdateRequest = objectMapper.readValue(body,
+              ArticleUpdateRequest.class);
 
           ArticleId articleId = new ArticleId(Long.parseLong(request.params("articleId")));
           Article article;
@@ -157,7 +162,8 @@ public class ArticleController implements Controller {
             return objectMapper.writeValueAsString(new ErrorResponse(e.getMessage()));
           }
 
-          articleService.update(articleId, articleUpdateRequest.title(), articleUpdateRequest.tags());
+          articleService.update(articleId, articleUpdateRequest.title(),
+              articleUpdateRequest.tags());
           LOG.debug("Article updated: {}", articleId);
           response.status(200);
           return objectMapper.writeValueAsString(new ArticleUpdateResponse(articleId));

@@ -43,8 +43,7 @@ public class CommentService {
     return commentId;
   }
 
-  public void update(CommentId commentId, ArticleId articleId, String text)
-      throws CommentUpdateException {
+  public void update(CommentId commentId, ArticleId articleId, String text) throws CommentUpdateException {
     Comment comment;
     try {
       comment = commentRepository.findById(commentId);
@@ -69,8 +68,7 @@ public class CommentService {
     }
   }
 
-  public ArticleId appendToArticle(ArticleId articleId, CommentId commentId)
-      throws ArticleFindException, CommentFindException {
+  public ArticleId appendToArticle(ArticleId articleId, CommentId commentId) throws ArticleFindException, CommentFindException {
     Article article;
     Comment comment;
 
@@ -86,16 +84,15 @@ public class CommentService {
       throw new CommentFindException("Cannot find comment with id=" + commentId, e);
     }
 
-    if (article.comments() != null) {
-      if (article.comments().contains(comment)) {
+    if (article.getComments() != null) {
+      if (article.getComments().contains(comment)) {
         throw new CommentAppendingException("This comment is already linked to this article");
       }
     }
 
-    List<Comment> comments =
-        article.comments() == null ? new ArrayList<>() : article.comments();
+    List<Comment> comments = article.getComments() == null ? new ArrayList<>() : article.getComments();
     comments.add(comment);
     articleRepository.update(article.withComments(comments));
-    return article.id();
+    return article.getId();
   }
 }

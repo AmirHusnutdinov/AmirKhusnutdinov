@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public record ArticleFindResponse(String articleId, String title, Set<String> tags, List<Comment> comments) {
+public record ArticleFindResponse(String articleId, String title, Set<String> tags,
+                                  List<Comment> comments) {
+
   @JsonProperty
   public List<String> getComments() {
     List<String> stringComments = new ArrayList<>();

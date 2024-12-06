@@ -45,16 +45,15 @@ class E2ETest {
 
     InMemoryArticleRepository inMemoryArticleRepository = new InMemoryArticleRepository();
     InMemoryCommentRepository inMemoryCommentRepository = new InMemoryCommentRepository();
-    ArticleService articleService = new ArticleService(inMemoryArticleRepository,
-        inMemoryCommentRepository);
-    CommentService commentService = new CommentService(inMemoryCommentRepository,
-        inMemoryArticleRepository);
+    ArticleService articleService = new ArticleService(inMemoryArticleRepository, inMemoryCommentRepository);
+    CommentService commentService = new CommentService(inMemoryCommentRepository, inMemoryArticleRepository);
 
     Application application = new Application(
         List.of(
             new ArticleController(
                 service,
                 articleService,
+                commentService,
                 objectMapper
             ),
             new CommentController(
@@ -149,8 +148,8 @@ class E2ETest {
 
     List<Comment> correctComments = new ArrayList<>(0);
 
-    assertEquals(article.title(), correctTitle);
-    assertEquals(article.tags(), correctTags);
-    assertEquals(article.comments(), correctComments);
+    assertEquals(article.getTitle(), correctTitle);
+    assertEquals(article.getTags(), correctTags);
+    assertEquals(article.getComments(), correctComments);
   }
 }
