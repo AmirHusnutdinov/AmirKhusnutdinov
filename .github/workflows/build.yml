@@ -18,7 +18,10 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
-          distribution: 'temurin' # Указываем дистрибутив Java
+          distribution: 'temurin'
+
+      - name: Change directory to demo folder
+        run: cd demo
 
       - name: Build with Maven
         run: mvn clean install
