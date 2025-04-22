@@ -1,2 +1,0 @@
-# AmirKhusnutdinov 
-task1
