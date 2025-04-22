@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Change directory to demo folder
-        run: cd demo
+        run: cd demo && pwd 
 
       - name: Build with Maven
         run: mvn clean install
