@@ -20,14 +20,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Change directory to demo folder
-        run: cd demo && pwd 
-
       - name: Build with Maven
         run: mvn clean install
+        working-directory: demo  # Указываем, что Maven должен работать в каталоге demo
 
       - name: Run tests
         run: mvn test
+        working-directory: demo  # Указываем, что Maven должен работать в каталоге demo
 
       - name: Package application
         run: mvn package
+        working-directory: demo  # Указываем, что Maven должен работать в каталоге demo
