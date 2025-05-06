@@ -11,7 +11,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>HW2</artifactId>
+	<artifactId>MTS2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>HW2</name>
 	<description>HW2 Amir Khusnutdinov</description>
