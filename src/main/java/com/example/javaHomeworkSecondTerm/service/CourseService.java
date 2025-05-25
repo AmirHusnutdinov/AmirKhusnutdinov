@@ -1,31 +1,31 @@
 package com.example.javaHomeworkSecondTerm.service;
 
-import com.example.javaHomeworkSecondTerm.model.Course;
 import com.example.javaHomeworkSecondTerm.repository.CoursesRepository;
+import com.example.javaHomeworkSecondTerm.model.Course;
 import jakarta.transaction.Transactional;
-import java.util.Collection;
-import java.util.Collections;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Collections;
 
 @Slf4j
 @Service
 @Transactional
 // @RequiredArgsConstructor
 public class CourseService {
+    private final CoursesRepository coursesRepository;
 
-  private final CoursesRepository coursesRepository;
+    public CourseService(CoursesRepository coursesRepository) {
+        this.coursesRepository = coursesRepository;
+    }
 
-  public CourseService(CoursesRepository coursesRepository) {
-    this.coursesRepository = coursesRepository;
-  }
+    public Collection<Course> getAllCourses() {
+        return Collections.emptyList();
+    }
 
-  public Collection<Course> getAllCourses() {
-    return Collections.emptyList();
-  }
-
-  public Course createCourse(Course course) {
-    return new Course();
-  }
+    public Course createCourse(Course course) {
+        return new Course();
+    }
 }
 
