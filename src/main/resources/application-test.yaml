@@ -1,5 +1,23 @@
-server:
-  port: 4567
 spring:
   application:
-    name: Second-Memory
+    name: java-homework-second-term-test
+  security:
+    user:
+      name: test
+      password: someText
+  datasource:
+    url: jdbc:postgresql://localhost:50975/testdb
+    driver-class-name: org.postgresql.Driver
+    username: testuser
+    password: testpass
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+local:
+  server:
+    port: 8082

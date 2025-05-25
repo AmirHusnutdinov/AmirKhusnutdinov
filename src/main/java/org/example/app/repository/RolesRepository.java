@@ -5,9 +5,9 @@ import org.example.app.exception.RoleNotFoundException;
 
 public interface RolesRepository {
 
-    Role getRole(String roleId) throws RoleNotFoundException;
+  Role getRole(String roleId) throws RoleNotFoundException;
 
-    void putRole(String roleId, Role newRole) throws RoleNotFoundException;
+  void putRole(String roleId, Role newRole) throws RoleNotFoundException;
 
-    Role deleteRole(String roleId) throws RoleNotFoundException;
+  Role deleteRole(String roleId) throws RoleNotFoundException;
 }

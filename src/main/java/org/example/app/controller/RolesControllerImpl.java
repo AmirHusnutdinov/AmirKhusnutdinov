@@ -17,30 +17,33 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @CircuitBreaker(name = "CircuitBreakerAPI")
 public class RolesControllerImpl implements RolesController {
-    private final RolesServiceImpl rolesService;
 
-    public RolesControllerImpl(RolesServiceImpl rolesService) {
-        this.rolesService = rolesService;
-    }
+  private final RolesServiceImpl rolesService;
 
-    @GetMapping("/roles/get/{roleId}")
-    @Override
-    public ResponseEntity<Role> getRole(@PathVariable String roleId) throws RoleNotFoundException, DatabaseException {
-        Role role = rolesService.getRole(roleId);
-        return ResponseEntity.ok(role);
-    }
+  public RolesControllerImpl(RolesServiceImpl rolesService) {
+    this.rolesService = rolesService;
+  }
 
-    @DeleteMapping("/roles/delete/{roleId}")
-    @Override
-    public ResponseEntity<Role> deleteRole(@PathVariable String roleId) throws RoleNotFoundException {
-        Role role = rolesService.deleteRole(roleId);
-        return ResponseEntity.ok(role);
-    }
+  @GetMapping("/roles/get/{roleId}")
+  @Override
+  public ResponseEntity<Role> getRole(@PathVariable String roleId)
+      throws RoleNotFoundException, DatabaseException {
+    Role role = rolesService.getRole(roleId);
+    return ResponseEntity.ok(role);
+  }
 
-    @PutMapping("/roles/put/{roleId}")
-    @Override
-    public ResponseEntity<Role> putRole(@PathVariable String roleId, Role newRole) throws RoleNotFoundException {
-        rolesService.putRole(roleId, newRole);
-        return ResponseEntity.ok(newRole);
-    }
+  @DeleteMapping("/roles/delete/{roleId}")
+  @Override
+  public ResponseEntity<Role> deleteRole(@PathVariable String roleId) throws RoleNotFoundException {
+    Role role = rolesService.deleteRole(roleId);
+    return ResponseEntity.ok(role);
+  }
+
+  @PutMapping("/roles/put/{roleId}")
+  @Override
+  public ResponseEntity<Role> putRole(@PathVariable String roleId, Role newRole)
+      throws RoleNotFoundException {
+    rolesService.putRole(roleId, newRole);
+    return ResponseEntity.ok(newRole);
+  }
 }

@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public interface RolesController {
 
-    ResponseEntity<Role> getRole(@PathVariable String roleId) throws RoleNotFoundException, DatabaseException;
+  ResponseEntity<Role> getRole(@PathVariable String roleId)
+      throws RoleNotFoundException, DatabaseException;
 
-    ResponseEntity<Role> deleteRole(@PathVariable String roleId) throws RoleNotFoundException;
+  ResponseEntity<Role> deleteRole(@PathVariable String roleId) throws RoleNotFoundException;
 
-    ResponseEntity<Role> putRole(@PathVariable String roleId, Role newRole) throws RoleNotFoundException;
+  ResponseEntity<Role> putRole(@PathVariable String roleId, Role newRole)
+      throws RoleNotFoundException;
 }
